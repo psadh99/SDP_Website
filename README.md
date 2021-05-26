@@ -1,2 +1,2 @@
-# sdp_website
-Website for SDP project: Asano.
+System Design Project Website
+Website for the SDP project: Asano.
