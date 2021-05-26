@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <meta http-equiv="Content-Language" content="English" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="normalize.css">
+        <link rel="stylesheet" type="text/css" href="Grid.css">
+        <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="queries.css">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap" rel="stylesheet">
+    
+        <title>Asano</title>
+    
+    </head>
+    <body>
+        <div id="header">
+            <nav>
+                <div class="row">
+                    <a href="./index">
+                        <img src="content/logo_nothing_white.png" alt="Asano Technologies Logo" class="logo">
+                    </a>
+                        
+                    <ul class="main-nav1">
+                        <li class="link" id="index.html"><a href="./index">About</a></li>
+                        <li class="link" id="system.html"><a href="./system">System</a></li>
+                        <li class="link" id="howitworks.html"><a href="./howitworks">How it works</a></li>
+                        <li class="link" id="evaluation.html"><a href="./evaluation">Evaluation</a></li>
+                        <li class="link" id="budget.html"><a href="./budget">Budget</a></li>
+                        <li class="link" id="team.html"><a href="./team" style="margin-right: 50%">Team</a></li>
+                        <a class="btn btn-full" href="user_guide.pdf" style="margin-top: -20%">User Guide</a>
+                    </ul>
+                    <a href="./index">
+                        <div class="text-box">
+                            <h5>Asano</h5>
+                            <h6>Technologies</h6>
+                        </div>
+                    </a> 
+                </div>
+                 
+            </nav>   
+       </div>
+        
+       <section class="section-features">
+            <div class="row">
+                <h3>How does our System work?</h3>
+                
+            </div>
+            
+            <div class="row">
+                <div class="col span-1-of-2 box">
+                
+                <h4>System Design</h4>
+                    
+                    <p>The boat is designed with two hulls connected with a bridge (as seen in the images).</p>
+                    <div class="row">
+                        <div class="col span-1-of-2 box">
+                        <b>Each hull:</b><br>
+                        <p style="margin: 0"> <b>-</b> Battery</p>
+                        <p style="margin: 0"> <b>-</b> Servo mechanism (for steering)</p>
+                        <p style="margin: 0"> <b>-</b> Inline motor</p>
+                        <p style="margin: 0"> <b>-</b> Electronic Speed Controller (ESC)</p>
+                        </div>
+                        <div class="col span-1-of-2 box">
+                        <b>Bridge:</b><br>
+                        <p style="margin: 0"> <b>-</b> Sampling mechanism system</p>
+                        <p style="margin: 0"> <b>-</b> Flight controller</p>
+                        <p style="margin: 0"> <b>-</b> GPS module</p>
+                        <p style="margin: 0"> <b>-</b> RX radio receiver</p>
+                        <p style="margin: 0"> <b>-</b> 2.4GHz link antenna</p>
+                        </div>
+                    </div>
+                    <p>This design provides more stability and manoeuvrability due to its extended width, and also increases storage capacity as there are three compartments. More details about the design of the system can be found <a href="content/Asano_design.mp4">here</a>.
+                    </p>
+                </div>
+                <div class="col span-1-of-2 box">
+                    <img src="content/design.png" alt="Asano model" class="Asano-design">
+                </div>
+ 
+            </div>
+           
+           <div class="row">
+                <h4>Asano application</h4>
+                    
+                    <p>The Asano application is the primary user interface for our system. It is an iOS application developed using the Swift programming language. <br> <br>
+                    When using autonomous mode, the user can <em>Launch Controls</em> in the app and add sample collection points on the map by making use of the 'plus' button. The user can also remove points by making use of the 'minus' button provided. Asano will autonomously navigate and collect samples, and the list of samples can be viewed by the user by using the 'List' button on the app.<br><br>
+                    The user can also take manual control of the boat using the 'Speed' and 'Rotation' controls provided. The live location of the boat would be visible on the map which can be utilised by the user to navigate to sample collection points. The user can switch back to automatic mode using the 'A' button provided.<br><br>
+                    The JSON data for sample locations, boat location, manual control commands, etc. is sent and received via a local web server between the app and the boat. Details about the server can be found in the <b>'Communication Channel'</b> section below.<br><br>
+                    The app also includes a database which makes use of Apple’s CoreData API. The record of samples are taken from the received JSON files coming from the boat, and are updated as soon as a new sample is taken. The main features of a sample are used as attributes inside the database and then displayed to the user. The user can then view the list of samples for the chosen date from the calendar, given that the boat was active that day.
+                    </p>
+                    <img src="content/app.png" alt="Asano model" class="Asano-img1">
+            </div>
+           
+           <div class="row">
+                <h4>Communication Channel</h4>
+                    
+                    <p>The communication between the boat and the user app is done through a Rasberry Pi (inside the boat) running as a local web server with 2.4GHz radio transmission. Along with this, WebSockets are used to communicate over the local connection and manually control the boat via the app. This approach was chosen for low latency in communication.<br><br>
+                    The web server is implemented using C++ and boost library, it is single threaded and asynchronous. The WebSockets are connected over a TCP and HTTP connection.<br><br>
+                    The server serves static files so that a basic homepage can be displayed within a browser. The server serves pages only from a strict set of paths so as to not allow any files to be leaked. When asked for a root server directory it returns a webpage that allows the user to connect to the WebSocket server. User can then send and receive messages from the boat to control it without using the app.<br> <br>
+                    The server can also serve API requests: <b>navi</b> which stores the points that the user has put on the map, and <b>path</b> which stores the path that the boat has taken after it has finished its cruise.<br><br>
+                    The server strictly monitors which files can be retrieved and validates the contents of the files that can be given to the server. This prevents the server from leaking essential files and limits the effect of denial-of-service attacks.
+                    </p>
+                    
+            </div>
+           
+           <div class="row">
+                <h4>Webots Simulation</h4>
+                    
+                    <p>The hardware simulation of our sytem has been developed in Webots. To make the lake simulation more realistic, it was combined with a group of different fluid entities with different stream velocities to try to simulate the dynamics of water. Thus, when the boat navigates in the lake, it would experience dynamic forces applied by the water.<br><br>
+                    Some accident handling functions have also been added, like low battery situations. The battery level decreases based on the velocity of the boat, or more specifically, the power of the motors. And when the battery level decreases under a threshold, the boat will terminate the task and return to the starting point. It also leaves future development for handling other accidents.<br>
+                    
+                    </p>
+                    
+            </div>
+            
+           <div class="row">
+                <h4>Autonomous Navigation</h4>
+                    
+                    <p>Our navigation system is quite simple, yet can achieve a lot. It is a greedy algorithm that tries to find a local optima of paths.<br><br>
+                    It is a rather simple deterministic algorithm that solves a complicated problem. It is highly efficient with constant time complexity. The algorithm is built to easily adapt needed changes and additional features.<br><br>
+                    The algorithm has extreme flexibility, for example, changing parameters, such us the mapping function itself. Changing one parameter will result in predictable, yet significant changes to the way the navigation system performs.
+                    </p>
+                    
+            </div>
+           
+           <div class="row">
+                <h4>Sample Collection System</h4>
+                    
+                    <p>The sample collection system of our project has been designed with syringes and servos motors (as seen in the image below). These syringes will be placed in a separate compartment in the Asano boat. This aspect of the project has not been implemented due to time constraints, but has been designed in a well thought-out manner.<br><br>
+                    The design of the sample collection system provides simple installation and collection of syringes. It also ensures that all syringes are always maintained at a distance in order to avoid contamination.
+                    </p>
+                    <img src="content/6.png" alt="Asano model" class="Asano-gif">
+            </div>
+           
+        </section>
+        
+        <footer>
+            <div class="row">
+                <div class="col span-1-of-2">
+                    <ul class="footer-nav">
+                        <li><a href="./index">Home</a></li>
+                        <li><a href="./system">System</a></li>
+                        <li><a href="./howitworks">How It Works</a></li>
+                        <li><a href="./evaluation">Evaluation</a></li>
+                        <li><a href="./budget">Budget</a></li>
+                        <li><a href="./team">Team</a></li>
+                        <li><a href="./contact-us">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+            <div class="row">
+                <p>
+                    Copyright &copy; 2021 by Asano Technologies. All rights reserved.
+                </p>
+            </div>
+        </footer>
+        
+        <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+
+</html>

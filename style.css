@@ -1,0 +1,503 @@
+/* ------------------------------------------------ */
+/* BASIC SETUP */
+/* ------------------------------------------------ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #fff;
+    color: #555;
+    font-family: 'Lato', 'Ariel', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+}
+
+/* --------THEME COLOR: #526391 -------- */
+/* --------THEME COLOR BUTTONS: #939eba. DARKER: #7d8aac -------- */
+/* ------------------------------------------------ */
+/* REUSABLE COMPONENTS */
+/* ------------------------------------------------ */
+
+.row {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+section {
+    padding: 50px 0 50px 0;
+}
+
+.box {
+    padding: 1%;
+}
+
+/* ------ HEADINGS ------ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+    text-transform: uppercase;
+    
+}
+
+h1{
+    color: #fff;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 14%;
+    font-size: 300%;
+    word-spacing: 4px;
+    letter-spacing: 2px;
+}
+
+h2{
+    color: #fff;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    font-size: 200%;
+    word-spacing: 4px;
+}
+
+h3 {
+    font-size: 180%;
+    word-spacing: 2px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h4 {
+    font-size: 110%;
+    font-weight: 400;
+    color: #526391;
+    margin-top: 2.5%;
+    margin-left: 2%;
+    
+}
+
+h3:after {
+    display: block;
+    height: 2px;
+    background-color: #526391;
+    content: " ";
+    width: 50px;
+    margin: 0 auto;
+    margin-top: 20px;
+    
+}
+
+h5 {
+    text-decoration: none;
+    color: #fff;
+    font-size: 70%;
+    margin-left: 33%;
+    font-weight: 390;
+}
+
+h6 {
+    color: #fff;
+    font-size: 70%;
+    margin-left: 6%;
+    font-weight: 390;
+}
+
+
+/* ------ PARAGRAPHS ------ */
+.long-copy {
+    line-height: 145%;
+    width: 70%;
+    margin-left: 15%;
+}
+
+.box p {
+    font-size: 90%;
+    line-height: 170%;
+    display: block;
+	margin: 4% 0 1% 1.6%;
+    text-align: justify-all;
+}
+
+.row p {
+    font-size: 90%;
+    line-height: 170%;
+    display: block;
+	float:none;
+    margin-bottom: 5%;
+    margin-top: 2%;
+    
+}
+
+
+
+/* ------ ICONS ------ */
+
+
+ion-icon{
+    font-size: 300%;
+    display: block;
+    color: #526391;
+    float: left;
+    transform: translate(0%, 15%);
+    margin-right: 1%;
+}
+
+/* ------ TABLES ------ */
+
+table{
+    margin-top: 3%;
+    margin-left: 7%;
+    margin-bottom: 2%;
+    border: 1px solid black;
+    width: 50%;
+}
+th, td {
+    padding: 1%;
+    border: 0.1px solid black;
+    
+}
+
+/* ------ BUTTONS ------ */
+
+.btn:link,
+.btn:visited {
+    display: inline-block;
+    padding: 10px 15px;
+    font-weight: 399;
+    text-decoration: none;
+    border-radius: 100px;
+    transition: background-color 0.2s, border 0.2s, color 0.2s;
+}
+
+.btn-full:link,
+.btn-full:visited {
+    background-color: #939eba;
+    border: 1px solid #939eba;
+    color: #fff;
+    margin-right: 15px;
+}
+
+.btn-ghost:link,
+.btn-ghost:visited {
+    border: 1px solid #939eba;
+    color: #939eba;
+}
+
+.btn:hover,
+.btn:active {
+    background-color: #7d8aac;
+    border: 1px solid #7d8aac;
+}
+
+.btn-ghost:hover,
+.btn-ghost:active {
+    color: #fff;
+}
+
+/* ------------------------------------------------ */
+/* HEADER */
+/* ------------------------------------------------ */
+
+
+header {
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(content/lake_background5.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(content/lake_background5.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    background-attachment: fixed;
+}
+
+#header {
+    background-color: #526391;
+    height: 20vh;
+}
+
+.text-box {
+    position: absolute;
+    
+}
+
+.hero-text-box {
+    position: absolute;
+    width: 1140px;
+    top: 45%;
+    left: 30%;
+    /*transform: translate(-50%, -50%);*/
+}
+
+.logo{
+    height: 70px;
+    width: 60px;
+    margin-top: 2%;
+    margin-left: 2.5%;
+}
+
+.main-nav, .main-nav1{
+    float: right;
+    list-style: none;
+    margin-top: 60px;
+}
+
+.main-nav li, .main-nav1 li {
+    display: inline-block;
+    margin-left: 40px;
+}
+
+.main-nav li a:link,
+.main-nav li a:visited, .main-nav1 li a:link,
+.main-nav1 li a:visited {
+    padding: 8px 0;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 100%;
+    font-weight: 399;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.2s;
+}
+
+.main-nav li a:hover,
+.main-nav li a:active {
+    border-bottom: 2px solid #939eba;
+}
+
+/* dropdown menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5%;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 200%;
+    z-index: 1;
+    padding-top: 5%;
+}
+
+.main-nav1 .dropdown .dropdown-content a {
+    color: #000;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10% 10%;
+}
+
+.dropdown-content a:hover {
+    border-bottom: 2px solid #0a3d62;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* navigation for other pages */
+.main-nav1 li a:hover,
+.main-nav1 li a:active {
+    border-bottom: 2px solid #fff;
+}
+
+
+
+/* ------------------------------------------------ */
+/* IMAGES & VIDEOS */
+/* ------------------------------------------------ */
+
+.gantt_chart {
+    width: 100%;
+    padding: 2% 0 2% 0;
+}
+
+.Asano-img {
+    padding: 3%;
+    width: 100%;
+}
+
+.Asano-img1 {
+    padding: 0 10% 5% 15%;
+    width: 90%;
+}
+
+.Asano-vid {
+    padding: 0 12% 5% 10%;
+    width: 100%;
+}
+
+.Asano-gif {
+    margin: 0 20% 5% 20%;
+    width: 50%;
+}
+
+.Asano-design {
+    padding: 20% 2% 5% 2%;
+    width: 100%;
+}
+
+.logo_m {
+    
+    height: 10%;
+    width: 25%;
+}
+
+.logo_g {
+    height: 10%;
+    width: 25%;
+}
+
+.logo_o {
+    height: 10%;
+    width: 50%;
+}
+
+/* ----------------------------------------------- */
+/* IMAGES SECTION */
+/* ----------------------------------------------- */
+
+.section-photos {
+    padding: 2% 2%;
+}
+
+.asano-gallery {
+    list-style: none;
+    width: 100%;
+    
+}
+
+.asano-gallery li {
+    display: block;
+    float: left;
+    width: 25%;
+}
+
+.asano-photo {
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    /*background-color: #000;*/
+}
+
+.asano-photo img {
+    opacity: 0.85;
+    width: 100%;
+    height: auto;
+    -webkit-transform: scale(1.15);
+    -ms-transform: scale(1.15);
+    transform: scale(1.15);
+    -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+.asano-photo img:hover {
+    opacity: 1;
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
+}
+
+/* ------------------------------------------------ */
+/* CONTACT US SECTION */
+/* ------------------------------------------------ */
+
+.contact-form {
+    padding: 5% 25%;
+}
+
+.form-control {
+    width: 70%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid gray;
+    color: #000;
+    font-size: 18px;
+    margin-bottom: 16px;
+    
+}
+
+input {
+    height: 45px;
+}
+
+form .submit {
+    background: #939eba;
+    border-color: transparent;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    height: 50px;
+    margin-top: 20px;
+}
+
+form .submit:hover {
+    background: #7d8aac;
+}
+
+/* ------------------------------------------------ */
+/* DEMO SECTION */
+/* ------------------------------------------------ */
+
+.demo-box {
+    margin-top: 30px;
+}
+
+
+.demo-box:first-child {
+    text-align: right;
+    padding-right: 3%;
+}
+
+
+.demo-box:last-child {
+    padding-left: 3%;
+}
+
+/* ------------------------------------------------ */
+/* FOOTER */
+/* ------------------------------------------------ */
+
+footer {
+    background-color: #333;
+    padding: 50px;
+    font-size: 80%;
+}
+
+.footer-nav {
+    list-style: none;
+    float: left;
+}
+
+
+.footer-nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.footer-nav li:last-child {
+    margin-right: 0;
+}
+
+.footer-nav li a:link,
+.footer-nav li a:visited {
+    text-decoration: none;
+    border: 0;
+    color: #888;
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+}
+
+.footer-nav li a:hover,
+.footer-nav li a:active {
+    color: #ddd;
+}
+
+footer p {
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+}
